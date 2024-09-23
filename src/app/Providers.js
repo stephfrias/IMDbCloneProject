@@ -1,6 +1,6 @@
 "use client";
+import React from 'react';
 import { ThemeProvider } from "next-themes";
-import React from "react";
 import { FavoritesProvider } from "@/context/FavoritesContext";  
 
 const Providers = ({ children }) => {

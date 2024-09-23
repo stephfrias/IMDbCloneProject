@@ -1,3 +1,4 @@
+"use client";
 import React, { useContext } from "react";
 import Image from "next/image";
 import { AiFillHeart } from "react-icons/ai";

@@ -1,3 +1,4 @@
+import React from 'react';
 import Results from "@/components/Results";
 
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;

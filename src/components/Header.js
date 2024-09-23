@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import MenuItem from "./MenuItem";
 import { AiFillHome, AiFillInfoCircle } from "react-icons/ai";
 import Link from "next/link";

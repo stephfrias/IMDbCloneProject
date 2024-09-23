@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import NavbarItem from "./NavbarItem";
 import Link from "next/link";
 
