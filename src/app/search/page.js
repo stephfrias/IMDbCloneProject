@@ -1,4 +1,5 @@
-import React, { Suspense } from 'react';import Results from "@/components/Results"; 
+import React, { Suspense } from 'react';
+import Results from "@/components/Results"; 
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 
 const SearchPage = async ({ searchParams }) => {
@@ -16,12 +17,14 @@ const SearchPage = async ({ searchParams }) => {
   const results = data.results;
 
   return (
-    <Suspense fallback={<div>Loading search results...</div>}>
-      {results && results.length > 0 ? (
-        <Results results={results} />
-      ) : (
-        <h2 className="text-center p-4">No results found for "{query}".</h2>
-      )}
+    <Suspense fallback={<div>Loading...</div>}>
+      <div>
+        {results && results.length > 0 ? (
+          <Results results={results} />
+        ) : (
+          <h2 className="text-center p-4">No results found for "{query}".</h2>
+        )}
+      </div>
     </Suspense>
   );
 };

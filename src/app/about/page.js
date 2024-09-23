@@ -1,8 +1,7 @@
-import React from 'react';
-
+import React, { Suspense } from 'react';
 const About = () => {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <div className="max-w-6xl mx-auto space-y-4 p-4">
         <h1 className="text-2xl font-medium text-amber-600">About Us</h1>
         <p>
@@ -45,7 +44,7 @@ const About = () => {
           atque minus nisi.
         </p>
       </div>
-    </>
+      </Suspense>
   );
 };
 
