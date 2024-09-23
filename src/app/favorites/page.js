@@ -1,5 +1,5 @@
 "use client"; 
-import React, { useContext } from "react";
+import React, { useContext, Suspense } from "react";
 import { FavoritesContext } from "@/context/FavoritesContext";
 import Card from "@/components/Card";
 

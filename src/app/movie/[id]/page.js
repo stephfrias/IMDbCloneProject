@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import { AiFillHeart } from "react-icons/ai";
 import { FavoritesContext } from "@/context/FavoritesContext";
@@ -7,11 +7,34 @@ import { FavoritesContext } from "@/context/FavoritesContext";
 const MoviePage = async ({ params }) => {
   const movieId = params.id;
   const { favorites, addFavorite, removeFavorite } = useContext(FavoritesContext);
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
-  );
-  const movie = await res.json();
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API_KEY}`
+        );
+        const data = await res.json();
+        setMovie(data);
+      } catch (error) {
+        console.error("Failed to load movie data", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovie();
+  }, [movieId]); // fetch movie when movieId changes
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading state
+  }
+
+  if (!movie) {
+    return <div>Error loading movie details</div>; // Handle error state
+  }
 
   const isFavorited = favorites.some((fav) => fav.id === movie.id);
 
