@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Results from "@/components/Results";
 
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
@@ -23,8 +23,10 @@ export default async function Home({ searchParams }) {
   const results = data.results;
 
   return (
-    <div>
-      <Results results={results} />
-    </div>
+    <Suspense fallback={<div>Loading movies...</div>}>
+      <div>
+        <Results results={results} />
+      </div>
+    </Suspense>
   );
 }
