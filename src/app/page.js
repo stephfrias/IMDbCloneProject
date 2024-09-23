@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Results from "@/components/Results";
 
 const API_KEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
@@ -9,7 +9,7 @@ async function fetchMovies(genre) {
       genre === "fetchTopRated" ? "movie/top_rated" : "movie/popular" 
     }?api_key=${API_KEY}&language=en-US&page=1`
   );
-  
+
   if (!res.ok) {
     throw new Error("Failed to load movie data");
   }
@@ -23,10 +23,8 @@ export default async function Home({ searchParams }) {
   const results = data.results;
 
   return (
-    <Suspense fallback={<div>Loading movies...</div>}>
-      <div>
-        <Results results={results} />
-      </div>
-    </Suspense>
+    <div>
+      <Results results={results} />
+    </div>
   );
 }
